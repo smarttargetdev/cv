@@ -21,8 +21,8 @@
   };
 
   var PRINT_LABEL = {
-    "pt-BR": "Imprimir / Salvar PDF",
-    "en-US": "Print / Save as PDF"
+    "pt-BR": "Imprimir",
+    "en-US": "Print"
   };
 
   // IDs de contato que devem iniciar uma nova linha no subcabeçalho.
