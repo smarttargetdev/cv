@@ -168,7 +168,7 @@ a:focus-visible, [tabindex]:focus-visible, button:focus-visible{
 }
 /* E-mail, telefone e WhatsApp sempre começam em uma nova linha */
 .subheader__list li.subheader__break-before{
-  flex-basis:33%;
+  flex-basis:100%;
 }
 .subheader__item{
   display:inline-flex;
