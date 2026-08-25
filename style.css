@@ -1,0 +1,529 @@
+:root{
+  --bg:            #eef1f5;
+  --surface:       #ffffff;
+  --surface-alt:   #dde5ed;   /* blue-gray highlight */
+  --surface-alt-2: #cbd7e2;   /* deeper blue-gray, hover/active */
+  --border:        #c6d0da;
+  --ink:            #1e2733;
+  --ink-soft:       #4d5c6c;
+  --ink-faint:      #7a8899;
+  --accent:         #3c5b74;  /* slate blue */
+  --accent-dark:    #223546;  /* deep slate for header band */
+  --accent-strong:  #2b4256;
+  --chip-bg:        #e3e9ef;
+  --focus:          #7096b3;
+
+  --font-display: "Space Grotesk", "Segoe UI", sans-serif;
+  --font-body:    "Inter", "Segoe UI", sans-serif;
+  --font-mono:    "IBM Plex Mono", ui-monospace, SFMono-Regular, monospace;
+
+  --radius: 6px;
+  --max-w: 880px;
+}
+
+*{ box-sizing:border-box; }
+
+html{ scroll-behavior:smooth; }
+
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--ink);
+  font-family:var(--font-body);
+  font-size:15.5px;
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+}
+
+.loading{
+  text-align:center;
+  padding:4rem 1rem;
+  color:var(--ink-faint);
+  font-family:var(--font-mono);
+  font-size:0.9rem;
+  letter-spacing:.04em;
+}
+
+a{ color:var(--accent-strong); }
+a:focus-visible, [tabindex]:focus-visible, button:focus-visible{
+  outline:2px solid var(--focus);
+  outline-offset:2px;
+}
+
+/* ---------- Header ---------- */
+.header{
+  background:
+    linear-gradient(180deg, var(--accent-dark) 0%, #1a2836 100%);
+  color:#eef2f6;
+  padding:3rem 1.25rem 2.5rem;
+}
+.header__inner{
+  max-width:var(--max-w);
+  margin:0 auto;
+  text-align:center;
+}
+.header__top{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:1rem;
+  flex-wrap:wrap;
+  margin-bottom:.6rem;
+}
+.header__eyebrow{
+  font-family:var(--font-mono);
+  font-size:.72rem;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:#8fa7bd;
+  margin:0;
+}
+
+/* ---------- Header controls (idioma + impressão) ---------- */
+.header__controls{
+  display:inline-flex;
+  align-items:center;
+  gap:.6rem;
+  flex-wrap:wrap;
+  justify-content:center;
+}
+
+/* ---------- Language switch ---------- */
+.lang-switch{
+  display:inline-flex;
+  border:1px solid #3d5468;
+  border-radius:999px;
+  overflow:hidden;
+  background:#16232f;
+}
+.lang-switch__btn{
+  font-family:var(--font-mono);
+  font-size:.7rem;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  color:#8fa7bd;
+  background:transparent;
+  border:none;
+  padding:.32rem .8rem;
+  cursor:pointer;
+  transition:background .15s ease, color .15s ease;
+}
+.lang-switch__btn:hover{ color:#eef2f6; }
+.lang-switch__btn[aria-pressed="true"]{
+  background:var(--accent);
+  color:#fff;
+}
+
+/* ---------- Print button ---------- */
+.print-btn{
+  display:inline-flex;
+  align-items:center;
+  font-family:var(--font-mono);
+  font-size:.7rem;
+  letter-spacing:.05em;
+  text-transform:uppercase;
+  color:#eef2f6;
+  background:var(--accent);
+  border:1px solid #3d5468;
+  border-radius:999px;
+  padding:.34rem 1rem;
+  cursor:pointer;
+  transition:background .15s ease;
+}
+.print-btn:hover{ background:var(--accent-strong); }
+
+.header__name{
+  font-family:var(--font-display);
+  font-weight:700;
+  font-size:clamp(1.8rem, 4.5vw, 2.6rem);
+  margin:0 0 .35rem;
+  letter-spacing:-.01em;
+}
+.header__role{
+  font-family:var(--font-display);
+  font-weight:500;
+  font-size:clamp(1rem, 2.4vw, 1.2rem);
+  color:#b8c9d9;
+  margin:0;
+}
+
+/* ---------- Subheader / contact ---------- */
+.subheader{
+  background:var(--surface-alt);
+  border-bottom:1px solid var(--border);
+}
+.subheader__list{
+  max-width:var(--max-w);
+  margin:0 auto;
+  padding:.85rem 1.25rem;
+  list-style:none;
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:.4rem 1.6rem;
+}
+.subheader__list li{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  justify-content:center;
+  gap:.4rem 1.6rem; /* mesmo espaçamento do container, para quando o <li> agrupa mais de um item (ver script.js) */
+}
+/* E-mail, telefone e whatsapp são agrupados no mesmo <li> pelo script.js.
+   flex-basis:100% força esse <li> inteiro para uma nova linha, sem separar
+   os itens que estão juntos dentro dele. */
+.subheader__list li.subheader__break-before{
+  flex-basis:100%;
+}
+.subheader__item{
+  display:inline-flex;
+  align-items:center;
+  gap:.5rem;
+  color:var(--ink-soft);
+  text-decoration:none;
+  font-size:.87rem;
+  padding:.15rem 0;
+}
+a.subheader__item:hover{ color:var(--accent-strong); }
+a.subheader__item:hover .subheader__icon{ color:var(--accent-strong); background:var(--surface-alt-2); }
+.subheader__icon{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:24px;
+  height:24px;
+  padding:4px;
+  border-radius:50%;
+  background:var(--surface);
+  color:var(--accent);
+  flex-shrink:0;
+}
+.subheader__icon svg{ width:100%; height:100%; }
+.subheader__value{ color:inherit; }
+.subheader__age{
+  font-family:var(--font-mono);
+  color:var(--ink-faint);
+  font-size:.8rem;
+}
+
+/* ---------- Content / panels ---------- */
+.content{
+  max-width:var(--max-w);
+  margin:0 auto;
+  padding:1.75rem 1.25rem 3rem;
+}
+
+.panel{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  margin-bottom:.9rem;
+  overflow:hidden;
+}
+
+.panel__header{
+  margin:0;
+  display:flex;
+  align-items:center;
+  gap:.75rem;
+  padding:.85rem 1.1rem;
+  background:var(--surface-alt);
+  cursor:pointer;
+  user-select:none;
+  font-family:var(--font-display);
+  font-weight:600;
+  font-size:1rem;
+  color:var(--accent-strong);
+  transition:background .15s ease;
+}
+.panel__header:hover{ background:var(--surface-alt-2); }
+
+.panel__index{
+  font-family:var(--font-mono);
+  font-size:.72rem;
+  color:var(--ink-faint);
+  min-width:1.6rem;
+}
+.panel__title{ flex:1; }
+.panel__chevron{
+  font-size:.85rem;
+  color:var(--ink-faint);
+  transition:transform .2s ease;
+}
+.panel[data-open="true"] .panel__chevron{ transform:rotate(180deg); }
+
+.panel__body{
+  padding:1.1rem 1.25rem 1.3rem;
+  display:block;
+}
+.panel[data-open="false"] .panel__body{ display:none; }
+
+.panel__body p{ margin:.2rem 0 .8rem; color:var(--ink); }
+.panel__body p:last-child{ margin-bottom:0; }
+
+/* Expertise grid */
+.expertise-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill, minmax(230px,1fr));
+  gap:.9rem;
+}
+.expertise-card{
+  background:var(--bg);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:.75rem .85rem;
+}
+.expertise-card h3{
+  font-family:var(--font-mono);
+  font-size:.72rem;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  color:var(--accent);
+  margin:0 0 .4rem;
+}
+.expertise-card p{
+  margin:0;
+  font-size:.85rem;
+  color:var(--ink-soft);
+}
+
+/* Education / language lists */
+.simple-list{ list-style:none; margin:0; padding:0; }
+.simple-list li{
+  display:flex;
+  justify-content:space-between;
+  gap:1rem;
+  padding:.55rem 0;
+  border-bottom:1px dashed var(--border);
+}
+.simple-list li:last-child{ border-bottom:none; }
+.simple-list .item-title{ font-weight:600; color:var(--ink); }
+.simple-list .item-sub{
+  color:var(--ink-faint);
+  font-family:var(--font-mono);
+  font-size:.82rem;
+  text-align:right;
+  white-space:nowrap;
+}
+.simple-list .item-desc{ color:var(--ink-soft); }
+
+/* Experience timeline */
+.timeline{ position:relative; }
+.timeline-item{
+  position:relative;
+  padding:0 0 1.4rem 1.4rem;
+  border-left:2px solid var(--border);
+}
+.timeline-item:last-child{ padding-bottom:0; }
+.timeline-item::before{
+  content:"";
+  position:absolute;
+  left:-6px;
+  top:.35rem;
+  width:10px;
+  height:10px;
+  border-radius:50%;
+  background:var(--accent);
+  border:2px solid var(--surface);
+}
+.timeline-period{
+  font-family:var(--font-mono);
+  font-size:.75rem;
+  color:var(--ink-faint);
+  letter-spacing:.03em;
+}
+.timeline-syntax{
+  font-family:var(--font-mono);
+  font-size:.95rem;
+  margin:.15rem 0 .1rem;
+  color:var(--ink);
+}
+.timeline-syntax .company{ color:var(--accent-strong); font-weight:600; }
+.timeline-syntax .op{ color:var(--ink-faint); }
+.timeline-syntax .role{ color:var(--ink); }
+.timeline-tag{
+  display:inline-block;
+  font-family:var(--font-mono);
+  font-size:.68rem;
+  letter-spacing:.04em;
+  text-transform:uppercase;
+  background:var(--chip-bg);
+  color:var(--ink-soft);
+  border-radius:3px;
+  padding:.12rem .45rem;
+  margin:.3rem 0 .5rem;
+}
+.timeline-highlights{
+  margin:.3rem 0 0;
+  padding-left:1.1rem;
+}
+.timeline-highlights li{
+  margin-bottom:.4rem;
+  color:var(--ink-soft);
+}
+.timeline-highlights li:last-child{ margin-bottom:0; }
+
+/* Footer */
+.footer{
+  text-align:center;
+  padding:1.5rem 1rem 2.5rem;
+  color:var(--ink-faint);
+  font-size:.78rem;
+}
+.footer code{
+  font-family:var(--font-mono);
+  background:var(--surface-alt);
+  padding:.1rem .35rem;
+  border-radius:3px;
+}
+
+@media (max-width:560px){
+  .simple-list li{ flex-direction:column; gap:.15rem; }
+  .simple-list .item-sub{ text-align:left; }
+}
+
+@media (prefers-reduced-motion: reduce){
+  *{ transition:none !important; scroll-behavior:auto !important; }
+}
+
+/* ==========================================================================
+   Impressão / Salvar como PDF
+   Objetivo: reduzir ao máximo o número de páginas, remover elementos
+   de interface (toggle de idioma, botão de impressão) e garantir que
+   todos os painéis apareçam abertos, independente do estado na tela.
+   ========================================================================== */
+@media print{
+  @page{
+    margin: 1.1cm 1.3cm;
+  }
+
+  *{
+    animation:none !important;
+    transition:none !important;
+    box-shadow:none !important;
+  }
+
+  html, body{
+    background:#fff;
+    font-size:10.3px;
+    line-height:1.38;
+  }
+
+  /* Elementos de interface que não fazem sentido no papel */
+  .lang-switch,
+  .print-btn,
+  .panel__chevron,
+  .footer{
+    display:none !important;
+  }
+
+  /* Cabeçalho compacto, sem faixa escura (economiza tinta e espaço) */
+  .header{
+    background:none !important;
+    color:#000;
+    padding:0 0 .5rem;
+  }
+  .header__top{ margin-bottom:.25rem; }
+  .header__eyebrow{ color:#555; }
+  .header__name{ font-size:1.5rem; margin-bottom:.15rem; }
+  .header__role{ color:#333; font-size:.85rem; }
+
+  /* Subcabeçalho de contato */
+  .subheader{
+    background:none;
+    border-bottom:1px solid #bbb;
+  }
+  .subheader__list{
+    padding:.35rem 0;
+    gap:.15rem 1.1rem;
+  }
+  .subheader__list li{
+    gap:.15rem 1.1rem;
+  }
+  .subheader__icon{
+    width:14px;
+    height:14px;
+    padding:0;
+    background:none;
+    color:#000;
+  }
+  .subheader__value,
+  .subheader__age{ color:#000; }
+  a.subheader__item{ color:#000; text-decoration:none; }
+
+  /* Conteúdo / painéis */
+  .content{ padding:.6rem 0 0; }
+
+  .panel{
+    border:none;
+    border-bottom:1px solid #ccc;
+    border-radius:0;
+    margin-bottom:.2rem;
+  }
+  .panel:last-child{ border-bottom:none; }
+
+  .panel__header{
+    background:none;
+    color:#000;
+    padding:.25rem 0;
+    font-size:.92rem;
+    cursor:default;
+  }
+  .panel__index{ color:#777; }
+
+  /* Força todos os painéis abertos na impressão, mesmo se estiverem
+     fechados na tela */
+  .panel__body{
+    padding:.1rem 0 .5rem;
+    display:block !important;
+  }
+  .panel[data-open="false"] .panel__body{
+    display:block !important;
+  }
+
+  .panel__body p{ margin:.1rem 0 .5rem; }
+
+  /* Áreas de conhecimento em duas colunas fixas, mais compactas */
+  .expertise-grid{
+    display:grid;
+    grid-template-columns:repeat(2, 1fr);
+    gap:.3rem .6rem;
+  }
+  .expertise-card{
+    background:none;
+    border:1px solid #ddd;
+    padding:.28rem .4rem;
+    break-inside:avoid;
+    page-break-inside:avoid;
+  }
+  .expertise-card h3{ margin-bottom:.15rem; }
+
+  /* Educação / idiomas */
+  .simple-list li{
+    padding:.25rem 0;
+    break-inside:avoid;
+    page-break-inside:avoid;
+  }
+
+  /* Linha do tempo de experiência profissional */
+  .timeline-item{
+    padding:0 0 .55rem 1rem;
+    break-inside:avoid;
+    page-break-inside:avoid;
+  }
+  .timeline-item::before{
+    background:#000;
+    border-color:#fff;
+  }
+  .timeline-syntax{ font-size:.86rem; margin:.1rem 0 .05rem; }
+  .timeline-syntax .company{ color:#000; }
+  .timeline-tag{
+    background:#eee;
+    color:#000;
+    margin:.15rem 0 .3rem;
+  }
+  .timeline-highlights{ margin-top:.15rem; }
+  .timeline-highlights li{ color:#000; margin-bottom:.15rem; }
+
+  a{ color:inherit; }
+}
