@@ -412,8 +412,8 @@ a.subheader__item:hover .subheader__icon{ color:var(--accent-strong); background
   }
 
   body{
-    padding-top: 72px;
-    padding-bottom: 72px;
+    padding-top: 42px;
+    padding-bottom: 42px;
   }
 
   /* Elementos de interface que não fazem sentido no papel */
